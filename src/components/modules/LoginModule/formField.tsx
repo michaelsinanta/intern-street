@@ -1,5 +1,5 @@
 import React from "react";
-import { FormFieldProps } from "./types";
+import { FormFieldProps } from "./loginTypes";
 
 export const FormField: React.FC<FormFieldProps> = ({
   type,

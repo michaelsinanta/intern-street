@@ -1,8 +1,8 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { FormField } from "./formField";
-import { LoginFormData } from "./types";
 import React from "react";
+import { LoginFormData } from "./loginTypes";
 
 export default function LoginPage() {
   const {
