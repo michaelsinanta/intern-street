@@ -1,13 +1,37 @@
 import Image from "next/image";
 import { InternProps } from "./interface";
+import { useEffect, useState } from "react";
 
 export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+    setIsBookmarked(bookmarks.includes(intern.id));
+  }, [intern.id]);
+
+  const toggleBookmark = () => {
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+    const index = bookmarks.findIndex(
+      (item: InternProps) => item.id === intern.id,
+    );
+    if (index !== -1) {
+      bookmarks.splice(index, 1);
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      setIsBookmarked(false);
+    } else {
+      bookmarks.push({ ...intern, isBookmarked: true });
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      setIsBookmarked(true);
+    }
+  };
+
   function isNewAccount(publishedTime: string) {
     const today = new Date();
     const publishedDate = new Date(publishedTime);
     const diffInDays =
       (today.getTime() - publishedDate.getTime()) / (1000 * 3600 * 24);
-    return diffInDays <= 1; // Accounts published within the last day are considered new
+    return diffInDays <= 1;
   }
 
   return (
@@ -28,30 +52,50 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
       )}
 
       <div className="flex flex-row w-full">
-        <div className="w-10 flex-shrink-0 mr-1">
-          {intern.logo ? (
-            <Image
-              src={intern.logo}
-              alt={intern.name}
-              width={80}
-              height={80}
-              objectFit="cover"
-            />
-          ) : (
-            <Image
-              src="/assets/logo.png"
-              alt="logo"
-              width={40}
-              height={40}
-              objectFit="cover"
-            />
-          )}
+        <div className="flex flex-col">
+          <button
+            className={`w-10 ${
+              isBookmarked ? "text-yellow-400" : "text-gray-500"
+            }`}
+            onClick={toggleBookmark}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 5v14l7-5 7 5V5a2 2 0 00-2-2H7a2 2 0 00-2 2z"
+              />
+            </svg>
+          </button>
+          <div className="w-10 flex-shrink-0 mr-1">
+            {intern.logo ? (
+              <Image
+                src={intern.logo}
+                alt={intern.name}
+                width={80}
+                height={80}
+                objectFit="cover"
+              />
+            ) : (
+              <Image
+                src="/assets/logo.png"
+                alt="logo"
+                width={40}
+                height={40}
+                objectFit="cover"
+              />
+            )}
+          </div>
         </div>
 
         <div className="flex flex-col">
-          <h5 className="font-bold text-md ">
-            {intern.name}
-          </h5>
+          <h5 className="font-bold text-md ">{intern.name}</h5>
           <div className=" text-sm">{intern.mitra_brand_name}</div>
 
           <div className=" text-xs">{intern.mitra_name}</div>

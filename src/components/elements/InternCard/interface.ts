@@ -18,4 +18,5 @@ export interface InternProps {
   certified: boolean;
   start_duration: string;
   end_duration: string;
+  isBookmarked?: boolean;
 }
