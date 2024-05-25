@@ -4,7 +4,7 @@ import { InternCard } from "@/components/elements/InternCard";
 import { InternProps } from "@/components/elements/InternCard/interface";
 import { Pagination } from "@mui/material";
 import { useDebounce } from "@uidotdev/usehooks";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 
 async function getData(): Promise<InternProps[]> {
   const res = await fetch(

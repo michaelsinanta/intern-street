@@ -37,7 +37,7 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
   return (
     <div className="relative rounded-md w-full bg-white p-2 hover:shadow-md hover:shadow-yellow-500	">
       {isNewAccount(intern.published_time) && (
-        <div className="absolute bottom-0 right-0 z-10">
+        <div className="absolute bottom-0 right-0 z-1">
           <div className="box-0-0-1 ribbonNew-0-0-1242">
             <div className="box-0-0-1 centering-0-0-7">
               <svg viewBox="0 0 50 23" height="24" fill="#2E8A5C" stroke="">
@@ -55,7 +55,7 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
         <div className="flex flex-col">
           <button
             className={`w-10 ${
-              isBookmarked ? "text-yellow-400" : "text-gray-500"
+              intern.isBookmarked ? "text-yellow-400" : "text-gray-500"
             }`}
             onClick={toggleBookmark}
           >
