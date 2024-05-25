@@ -21,15 +21,21 @@ export default function LandingPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col  overflow-y-scroll  h-screen">
+      <main className="flex flex-col overflow-y-scroll h-screen">
         {/* Hero */}
         <div className="flex items-center justify-center min-h-screen px-[10vw] bg-[#E24E42]">
           <div className="flex flex-col items-center text-white">
             <h1 className="text-center">Launch Your Career</h1>
-            <h2 className="italic text-primary mb-10">
+            <h2 className="italic text-primary mb-10 text-center">
               Find Your Dream Internship Today!
             </h2>
-            <Button variant={"white"} size={"md"}>
+            <Button
+              variant={"white"}
+              size={"md"}
+              onClick={() => {
+                void router.push("/intern");
+              }}
+            >
               <h3>Find Your Vacancy</h3>
             </Button>
           </div>

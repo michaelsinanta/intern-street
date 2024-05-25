@@ -23,7 +23,7 @@ export const SideBar: React.FC<SideBarProps> = () => {
     },
     {
       name: "Find Intern",
-      href: "/job",
+      href: "/intern",
       icon: MdWork,
     },
     {

@@ -14,6 +14,4 @@ export type FormFieldProps = {
   valueAsNumber?: boolean;
 };
 
-export type ValidFieldNames =
-  | "username"
-  | "password";
+export type ValidFieldNames = "username" | "password";
