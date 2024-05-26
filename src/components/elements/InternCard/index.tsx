@@ -3,11 +3,15 @@ import { InternProps } from "./interface";
 import { useEffect, useState } from "react";
 
 export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(intern.isBookmarked);
+
+  useEffect(() => {
+    setIsBookmarked(intern.isBookmarked);
+  }, [intern.isBookmarked]);
 
   useEffect(() => {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-    setIsBookmarked(bookmarks.includes(intern.id));
+    setIsBookmarked(bookmarks.some((bookmark: InternProps) => bookmark.id === intern.id));
   }, [intern.id]);
 
   const toggleBookmark = () => {
@@ -17,13 +21,13 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
     );
     if (index !== -1) {
       bookmarks.splice(index, 1);
-      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
       setIsBookmarked(false);
     } else {
       bookmarks.push({ ...intern, isBookmarked: true });
-      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
       setIsBookmarked(true);
     }
+
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   };
 
   function isNewAccount(publishedTime: string) {
@@ -55,7 +59,7 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
         <div className="flex flex-col">
           <button
             className={`w-10 ${
-              intern.isBookmarked ? "text-yellow-400" : "text-gray-500"
+              isBookmarked ? "text-yellow-400" : "text-gray-500"
             }`}
             onClick={toggleBookmark}
           >
