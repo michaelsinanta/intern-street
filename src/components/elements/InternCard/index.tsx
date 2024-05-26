@@ -11,7 +11,9 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
 
   useEffect(() => {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-    setIsBookmarked(bookmarks.some((bookmark: InternProps) => bookmark.id === intern.id));
+    setIsBookmarked(
+      bookmarks.some((bookmark: InternProps) => bookmark.id === intern.id),
+    );
   }, [intern.id]);
 
   const toggleBookmark = () => {
