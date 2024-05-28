@@ -1,49 +1,52 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { FormField } from "./formField";
 import React from "react";
-import { LoginFormData } from "./loginTypes";
+import { LoginSchema } from "./types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Input } from "@/components/elements";
 
 export default function LoginPage() {
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors, isSubmitting },
-    setError,
-    watch,
-  } = useForm<LoginFormData>();
+    formState: { isValid },
+  } = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
+    mode: "all",
+  });
 
-  const onSubmit = async (data: LoginFormData) => {
+  const onSubmit = handleSubmit(async (data) => {
     console.log("SUCCESS", data);
-  };
+  });
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-[#E24E42] w-full">
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={onSubmit}
         className="w-full max-w-md p-4 bg-white shadow-md rounded"
       >
         <div className="grid grid-cols-1 gap-4">
-          <FormField
-            type="text"
-            placeholder="Username"
+          <Input
+            control={control}
             name="username"
-            register={register}
-            error={errors.username}
+            type="text"
+            placeholder="Masukkan Username"
+            required
+            label="Username"
           />
-
-          <FormField
-            type="password"
-            placeholder="Password"
+          <Input
+            control={control}
             name="password"
-            register={register}
-            error={errors.password}
+            type="password"
+            placeholder="Masukkan Password"
+            required
+            label="Password"
           />
-
           <button
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            disabled={isSubmitting}
+            disabled={!isValid}
           >
             Submit
           </button>
