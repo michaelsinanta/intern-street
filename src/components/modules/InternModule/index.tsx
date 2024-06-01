@@ -5,6 +5,7 @@ import { InternProps } from "@/components/elements/InternCard/interface";
 import { Pagination } from "@mui/material";
 import { useDebounce } from "@uidotdev/usehooks";
 import CircularProgress from "@mui/material/CircularProgress";
+import { InternModal } from "@/components/elements/InternModal";
 
 async function getData(): Promise<InternProps[]> {
   const res = await fetch(
@@ -137,6 +138,7 @@ export default function InternPage() {
           />
         </div>
       </main>
+      <InternModal/>
     </>
   );
 }

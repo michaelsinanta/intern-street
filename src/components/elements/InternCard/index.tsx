@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { InternProps } from "./interface";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ModalContext } from "@/components/context/ModalContext";
 
 export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
   const [isBookmarked, setIsBookmarked] = useState(intern.isBookmarked);
+  const { openModal, closeModal } = useContext(ModalContext);
 
   useEffect(() => {
     setIsBookmarked(intern.isBookmarked);
@@ -101,7 +103,10 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
         </div>
 
         <div className="flex flex-col">
-          <h5 className="font-bold text-md ">{intern.name}</h5>
+          <h5 className="font-bold text-md hover:underline cursor-pointer hover:text-red-600"
+          onClick={() => openModal(intern.id)}>
+        {intern.name}
+      </h5>
           <div className=" text-sm">{intern.mitra_brand_name}</div>
 
           <div className=" text-xs">{intern.mitra_name}</div>
