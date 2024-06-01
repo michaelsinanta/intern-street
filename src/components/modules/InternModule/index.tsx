@@ -24,6 +24,7 @@ export default function InternPage() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [nameFilter, setNameFilter] = useState<string>("");
   const [brandNameFilter, setBrandNameFilter] = useState<string>("");
+  const [locationFilter, setLocationFilter] = useState<string>("");
   const pageSize: number = 9;
 
   useEffect(() => {
@@ -60,7 +61,8 @@ export default function InternPage() {
       intern.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       intern.mitra_brand_name
         .toLowerCase()
-        .includes(brandNameFilter.toLowerCase()),
+        .includes(brandNameFilter.toLowerCase()) &&
+      intern.location.toLowerCase().includes(locationFilter.toLowerCase()),
   );
 
   const startIndex = (currentPage - 1) * pageSize;
@@ -69,11 +71,12 @@ export default function InternPage() {
 
   const debouncedNameFilter = useDebounce(nameFilter, 500);
   const debouncedBrandNameFilter = useDebounce(brandNameFilter, 500);
+  const debouncedLocationFilter = useDebounce(locationFilter, 500);
 
   useEffect(() => {
     console.log("Filters changed, resetting page");
     setCurrentPage(1);
-  }, [debouncedNameFilter, debouncedBrandNameFilter]);
+  }, [debouncedNameFilter, debouncedBrandNameFilter, debouncedLocationFilter]);
 
   return (
     <>
@@ -99,6 +102,13 @@ export default function InternPage() {
             placeholder="Filter by Brand Name"
             value={brandNameFilter}
             onChange={(e) => setBrandNameFilter(e.target.value)}
+            className="px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+          />
+          <input
+            type="text"
+            placeholder="Filter by Location"
+            value={locationFilter}
+            onChange={(e) => setLocationFilter(e.target.value)}
             className="px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
           />
         </div>
