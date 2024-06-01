@@ -1,6 +1,7 @@
 "use client";
 import { InternCard } from "@/components/elements";
 import { InternProps } from "@/components/elements/InternCard/interface";
+import { InternModal } from "@/components/elements/InternModal";
 import { Pagination } from "@mui/material";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
@@ -99,6 +100,7 @@ export default function DashboardPage() {
           />
         </div>
       </main>
+      <InternModal/>
     </>
   );
 }
