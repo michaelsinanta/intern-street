@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <SideBarProvider>
       <ModalProvider>
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
+        <html lang="en">
+          <body className={inter.className}>{children}</body>
+        </html>
       </ModalProvider>
     </SideBarProvider>
   );

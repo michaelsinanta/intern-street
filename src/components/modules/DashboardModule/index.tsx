@@ -100,7 +100,7 @@ export default function DashboardPage() {
           />
         </div>
       </main>
-      <InternModal/>
+      <InternModal />
     </>
   );
 }

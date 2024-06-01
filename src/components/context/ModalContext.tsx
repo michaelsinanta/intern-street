@@ -34,7 +34,9 @@ const ModalProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   return (
-    <ModalContext.Provider value={{ id, isOpened, openModal, closeModal, setId, setOpened}}>
+    <ModalContext.Provider
+      value={{ id, isOpened, openModal, closeModal, setId, setOpened }}
+    >
       {children}
     </ModalContext.Provider>
   );

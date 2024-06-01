@@ -138,7 +138,7 @@ export default function InternPage() {
           />
         </div>
       </main>
-      <InternModal/>
+      <InternModal />
     </>
   );
 }

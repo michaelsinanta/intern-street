@@ -103,10 +103,12 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
         </div>
 
         <div className="flex flex-col">
-          <h5 className="font-bold text-md hover:underline cursor-pointer hover:text-red-600"
-          onClick={() => openModal(intern.id)}>
-        {intern.name}
-      </h5>
+          <h5
+            className="font-bold text-md hover:underline cursor-pointer hover:text-red-600"
+            onClick={() => openModal(intern.id)}
+          >
+            {intern.name}
+          </h5>
           <div className=" text-sm">{intern.mitra_brand_name}</div>
 
           <div className=" text-xs">{intern.mitra_name}</div>
