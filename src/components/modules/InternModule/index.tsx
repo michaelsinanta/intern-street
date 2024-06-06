@@ -7,20 +7,7 @@ import { useDebounce } from "@uidotdev/usehooks";
 import CircularProgress from "@mui/material/CircularProgress";
 import { InternModal } from "@/components/elements/InternModal";
 
-async function getData(): Promise<InternProps[]> {
-  const res = await fetch(
-    `https://api.kampusmerdeka.kemdikbud.go.id/magang/browse/opportunities?opportunity_type=MSIB&activity_type=`,
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const data = await res.json();
-  return data.data;
-}
-
-export default function InternPage() {
+export default function InternPage({ data }: { data: InternProps[] }) {
   const [interns, setInterns] = useState<InternProps[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [nameFilter, setNameFilter] = useState<string>("");
@@ -29,9 +16,8 @@ export default function InternPage() {
   const pageSize: number = 9;
 
   useEffect(() => {
-    const fetchData = async () => {
       try {
-        const response = await getData();
+        const response = data;
         const savedBookmarks = JSON.parse(
           localStorage.getItem("bookmarks") || "[]",
         );
@@ -45,10 +31,7 @@ export default function InternPage() {
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
-    };
-
-    fetchData();
-  }, []);
+  }, [data]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,

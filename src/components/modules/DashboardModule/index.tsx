@@ -15,14 +15,10 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const fetchBookmarks = async () => {
-      try {
-        const savedBookmarks = JSON.parse(
-          localStorage.getItem("bookmarks") || "[]",
-        );
-        setBookmarks(savedBookmarks);
-      } catch (error) {
-        console.error("Failed to fetch bookmark:", error);
-      }
+      const savedBookmarks = JSON.parse(
+        localStorage.getItem("bookmarks") || "[]",
+      );
+      setBookmarks(savedBookmarks);
     };
 
     fetchBookmarks();

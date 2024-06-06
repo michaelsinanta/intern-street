@@ -37,7 +37,6 @@ export const InternModal: React.FC = () => {
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching intern data:", error);
           setLoading(false);
         });
     }

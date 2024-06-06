@@ -16,9 +16,7 @@ export default function RegisterPage() {
     mode: "all",
   });
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log("SUCCESS", data);
-  });
+  const onSubmit = handleSubmit(async (data) => {});
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-[#E24E42] w-full">
