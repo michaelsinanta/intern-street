@@ -7,9 +7,17 @@ import { ModalProvider } from "@/components/context/ModalContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "JobStreet",
   description: "Created by @michaelsinanta",
+  icons: {
+    icon: [
+      {
+        url: '/assets/logo.png',
+        href: '/assets/logo.png',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
