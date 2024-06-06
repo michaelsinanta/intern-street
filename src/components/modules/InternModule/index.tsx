@@ -16,21 +16,21 @@ export default function InternPage({ data }: { data: InternProps[] }) {
   const pageSize: number = 9;
 
   useEffect(() => {
-      try {
-        const response = data;
-        const savedBookmarks = JSON.parse(
-          localStorage.getItem("bookmarks") || "[]",
-        );
-        const updatedInterns = response.map((intern) => ({
-          ...intern,
-          isBookmarked: savedBookmarks.some(
-            (bookmark: InternProps) => bookmark.id === intern.id,
-          ),
-        }));
-        setInterns(updatedInterns);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
+    try {
+      const response = data;
+      const savedBookmarks = JSON.parse(
+        localStorage.getItem("bookmarks") || "[]",
+      );
+      const updatedInterns = response.map((intern) => ({
+        ...intern,
+        isBookmarked: savedBookmarks.some(
+          (bookmark: InternProps) => bookmark.id === intern.id,
+        ),
+      }));
+      setInterns(updatedInterns);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
   }, [data]);
 
   const handlePageChange = (

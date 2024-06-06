@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { InternProps } from "./interface";
-import { useContext, useEffect, useState } from "react";
-import { ModalContext } from "@/components/context/ModalContext";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
   const [isBookmarked, setIsBookmarked] = useState(intern.isBookmarked);
-  const { openModal, closeModal } = useContext(ModalContext);
+  const router = useRouter();
 
   useEffect(() => {
     setIsBookmarked(intern.isBookmarked);
@@ -103,12 +104,16 @@ export const InternCard: React.FC<{ intern: InternProps }> = ({ intern }) => {
         </div>
 
         <div className="flex flex-col">
-          <h5
-            className="font-bold text-md hover:underline cursor-pointer hover:text-red-600"
-            onClick={() => openModal(intern.id)}
+          <Link
+            href={`/details/${intern.id}`}
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            {intern.name}
-          </h5>
+            <h5 className="font-bold text-md hover:underline cursor-pointer hover:text-red-600">
+              {intern.name}
+            </h5>{" "}
+          </Link>
+
           <div className=" text-sm">{intern.mitra_brand_name}</div>
 
           <div className=" text-xs">{intern.mitra_name}</div>
