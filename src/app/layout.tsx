@@ -13,8 +13,8 @@ export const metadata = {
   icons: {
     icon: [
       {
-        url: '/assets/logo.png',
-        href: '/assets/logo.png',
+        url: "/assets/logo.png",
+        href: "/assets/logo.png",
       },
     ],
   },

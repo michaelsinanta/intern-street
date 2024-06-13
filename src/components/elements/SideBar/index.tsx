@@ -1,11 +1,7 @@
 "use client";
 import { AiOutlineHome } from "react-icons/ai";
-import { TiContacts } from "react-icons/ti";
 import { MdDashboard } from "react-icons/md";
-import { RiLoginCircleFill } from "react-icons/ri";
-import { RiLogoutCircleFill } from "react-icons/ri";
 import { MdWork } from "react-icons/md";
-import { AiOutlineLogin } from "react-icons/ai";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import Link from "next/link";
 import { useContext } from "react";
@@ -30,21 +26,6 @@ export const SideBar: React.FC<SideBarProps> = () => {
       name: "Dashboard",
       href: "/dashboard",
       icon: MdDashboard,
-    },
-    {
-      name: "Login",
-      href: "/login",
-      icon: RiLoginCircleFill,
-    },
-    {
-      name: "Register",
-      href: "/register",
-      icon: AiOutlineLogin,
-    },
-    {
-      name: "Logout",
-      href: "/logout",
-      icon: RiLogoutCircleFill,
     },
   ];
 
