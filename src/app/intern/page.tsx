@@ -3,7 +3,7 @@ import InternPage from "@/components/modules/InternModule";
 
 async function getData() {
   const res = await fetch(
-    "https://api.kampusmerdeka.kemdikbud.go.id/magang/browse/opportunities?opportunity_type=MSIB&activity_type=",
+    "https://api.kampusmerdeka.kemdikbud.go.id/magang/browse/opportunities?opportunity_type=&activity_type=",
     { next: { revalidate: 3600 } },
   );
   if (!res.ok) {
